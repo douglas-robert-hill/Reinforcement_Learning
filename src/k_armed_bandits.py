@@ -123,7 +123,7 @@ class kArmed_Bandits():
 
         return max_value : integer of index of max argument - ties broken randomly 
         """
-        counter = a.action_counter
+        counter = self.action_counter
         counter[counter == 0] = 1
         arr = arr + (self.C * np.sqrt(math.log(self.steps_taken) / counter))
         max_value = np.where(arr == arr[np.argmax(arr)])[0].tolist()
