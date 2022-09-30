@@ -162,8 +162,7 @@ class kArmed_Bandits():
         """
         Plot the average reward at each step
         """
-        if self.steps_taken == 0:
-            raise ValueError("Must run bandit before plotting.")
+        if self.steps_taken == 0: raise ValueError("Must run bandit before plotting.")
 
         x = list(range(self.steps_taken))
         y = np.cumsum(self.reward_list) / np.arange(1, (self.steps_taken + 1))
@@ -171,7 +170,7 @@ class kArmed_Bandits():
         plt.plot(x, y)
         plt.xlabel("Steps")
         plt.ylabel("Average Reward")
-        plt.title("Average Reward")
+        plt.title("Average Reward Over Steps")
         plt.show()
 
 
@@ -179,8 +178,7 @@ class kArmed_Bandits():
         """
         Plot the number of times the optimal action was selected 
         """
-        if self.steps_taken == 0:
-            raise ValueError("Must run bandit before plotting.")
+        if self.steps_taken == 0: raise ValueError("Must run bandit before plotting.")
 
         x = list(range(self.steps_taken))
         optimal_action = self.__arg_max__(arr = self.K_means)
@@ -192,6 +190,6 @@ class kArmed_Bandits():
         plt.plot(x, y)
         plt.xlabel("Steps")
         plt.ylabel("% Optimal Action")
-        plt.title("Optimal Action Selection Percentage")
+        plt.title("Optimal Action Selection Percentage Over Steps")
         plt.show()
 
