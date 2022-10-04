@@ -141,8 +141,7 @@ class kArmed_Bandits():
         param reward : reward received from taken action 
         param action : index of action taken 
         """
-        reward_upd = self.action_values[action] + ((1 / self.action_counter[action]) * (reward - self.action_values[action]))
-        self.action_values[action] = reward_upd
+        self.action_values[action] = self.action_values[action] +  ((reward - self.action_values[action]) / self.action_counter[action])
 
 
     def __upd_action_value_gradients__(self, reward: float, action: int) -> None:
@@ -154,8 +153,7 @@ class kArmed_Bandits():
         """
         avg_reward = np.mean(self.reward_list)
         probability_of_action = np.exp(self.action_values[action]) / np.sum(np.exp(self.action_values))
-        reward_upd = self.action_values[action] + (self.step_size * (avg_reward - reward) * (1 - probability_of_action))
-        self.action_values[action] = reward_upd
+        self.action_values[action] = self.action_values[action] + (self.step_size * (avg_reward - reward) * (1 - probability_of_action))
 
 
     def plot_reward(self) -> None:
